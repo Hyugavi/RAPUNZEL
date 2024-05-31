@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="MINHARAPUNZEL" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Namorada</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 60%;
+            margin: 20px;
+            display: none; /* Inicia escondido */
+        }
+        .container.visible {
+            display: block; /* Mostra quando necessário */
+        }
+        .poem-container {
+            color: pink;
+        }
+        .poem-container p {
+            margin: 10px 0;
+        }
+        .btn {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background: #ff69b4;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-no {
+            margin-left: 10px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .photos-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .photo {
+            max-width: 300px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="Melhores momentos de Rapunzel e Flynn ｜ Disney Princesa.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos HTML5.
+    </video>
+    <audio id="music" loop>
+        <source src="Sylvia Salustti, Raphael Rossato - Vejo Enfim a Luz Brilhar (De ＂Enrolados＂⧸Vídeo Oficial).mp3" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <div class="container poem-container visible" id="poem">
+        <h1>Dois anos de Amor: Um Poema para Minha Princesa</h1>
+        <p>Dois anos se passaram, meu amor,<br>
+        E a cada dia te amo mais e mais.<br>
+        Você é minha princesa, meu sol,<br>
+        A cor que ilumina meus dias, a paz.</p>
+        
+        <p>Com você, aprendi a amar de verdade,<br>
+        A ver o mundo com outros olhos, com mais clareza.<br>
+        Aprendi que o amor supera tudo,<br>
+        E que a felicidade está em cada sorriso seu.</p>
+        
+        <p>Mesmo que às vezes você me tire do sério,<br>
+        Com seu jeito brincalhão e um pouco chato,<br>
+        Meu amor por você é infinito e eterno,<br>
+        Um sentimento puro, forte e sem tato.</p>
+        
+        <p>Com você, aprendi a acreditar nos sonhos,<br>
+        A lutar por um futuro juntos, lado a lado.<br>
+        Aprendi a ser melhor a cada dia,<br>
+        E a te fazer a mulher mais feliz do mundo, sem cansaço.</p>
+        
+        <p>Não falta muito para nossos caminhos se unirem,<br>
+        E construirmos uma vida juntos, lado a lado.<br>
+        Cada dia que passa, penso em você,<br>
+        E imagino como será nosso futuro, lado a lado.</p>
+        
+        <p>Te amo, minha princesa, com todo meu ser,<br>
+        E prometo te amar para sempre, sem hesitar.<br>
+        Você é tudo para mim, meu amor,<br>
+        A razão da minha felicidade, a luz do meu olhar.</p>
+        
+        <p>Com amor eterno,<br>
+        Seu All Migth apaixonado.</p>
+        <button class="btn" onclick="showQuestion()">Continuar</button>
+    </div>
+    <div class="container question-container" id="question">
+        <h1>Você me ama?</h1>
+        <div class="button-group">
+            <button class="btn btn-yes" onclick="showLoveMessage()">Sim</button>
+            <button class="btn btn-no" onclick="moveNoButton()">Não</button>
+        </div>
+    </div>
+    <!-- Contêiner para mostrar a mensagem e fotos quando a opção "Sim" for selecionada -->
+    <div class="photos-container" id="photos-container">
+        <h2>Também te amo, minha princesa!</h2>
+        <div class="photos">
+            <img class="photo" src="AMOR2 (1).jpeg" alt="Foto 1">
+            <img class="photo" src="RAPUNZEL.png" alt="Foto 2">
+            <img class="photo" src="AMOR1 (1).jpeg" alt="Foto 3">
+        </div>
+    </div>
+    <script>
+        // Reproduz a música ao clicar no botão "Play"
+        function playMusic() {
+            var music = document.getElementById('music');
+            music.play();
+            // Oculta o botão "Play" após clicar
+            document.getElementById('play-btn').style.display = 'none';
+        }
+
+        function showQuestion() {
+            document.getElementById('poem').classList.remove('visible');
+            document.getElementById('question').classList.add('visible');
+        }
+
+        function showLoveMessage() {
+            document.getElementById('question').classList.remove('visible');
+            document.getElementById('photos-container').style.display = 'flex';
+        }
+
+        function moveNoButton() {
+            var noButton = document.querySelector('.btn-no');
+            setInterval(function() {
+                var x = Math.random() * (window.innerWidth - noButton.clientWidth);
+                var y = Math.random() * (window.innerHeight - noButton.clientHeight);
+                noButton.style.left = x + 'px';
+                noButton.style.top = y + 'px';
+            }, 1000);
+        }
+    </script>
+    <!-- Botão "Play" para iniciar a música manualmente -->
+    <button id="play-btn" class="btn" onclick="playMusic()">Play</button>
+</body>
+</html>
